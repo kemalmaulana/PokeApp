@@ -1,0 +1,14 @@
+query getPagedPokemonQuery($offset: Int, $limit: Int) {
+
+    pokemon_v2_pokemon(offset: $offset, limit: $limit) {
+        id
+        name
+        pokemon_v2_pokemontypes {
+            pokemon_v2_type {
+                name
+            }
+        }
+        base_experience
+        order
+    }
+}
