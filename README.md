@@ -11,3 +11,4 @@
 * Room Database
 * Navigation
 * Paging 3.0
+* Firebase Crashlytics
