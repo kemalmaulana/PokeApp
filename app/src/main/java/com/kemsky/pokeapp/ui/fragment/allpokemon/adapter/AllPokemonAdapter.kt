@@ -1,6 +1,6 @@
-package com.kemsky.pokeapp.ui.allpokemon.adapter
+package com.kemsky.pokeapp.ui.fragment.allpokemon.adapter
 
-//import android.R
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -14,6 +14,7 @@ import com.kemsky.pokeapp.R
 import com.kemsky.pokeapp.constant.AppConstant.getImageUrl
 import com.kemsky.pokeapp.databinding.ItemPokemonBinding
 import com.kemsky.pokeapp.helper.loadImage
+import com.kemsky.pokeapp.ui.activity.detailpokemon.DetailActivity
 
 
 class AllPokemonAdapter :
@@ -67,6 +68,13 @@ class AllPokemonAdapter :
                     chipBackgroundColor = chipColor
                 }
                 linearChip.addView(chip)
+            }
+            this.root.setOnClickListener {
+                Intent(this.root.context, DetailActivity::class.java).also {
+                    it.putExtra("poke_id", item.id)
+                    it.putExtra("poke_name", item.name)
+                    this.root.context.startActivity(it)
+                }
             }
         }
     }

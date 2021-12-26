@@ -2,19 +2,16 @@ query getDetailPokemonQuery($pokeId: Int) {
     pokemon_v2_pokemon(where:{id:{_eq: $pokeId}}) {
         id
         name
-        pokemon_v2_pokemongameindices {
-            pokemon_v2_version {
-                name
-            }
-        }
         pokemon_v2_pokemontypes {
             pokemon_v2_type {
                 name
-                pokemon_v2_generation {
-                    name
-                }
             }
-            slot
+        }
+        pokemon_v2_pokemonspecy {
+            forms_switchable
+            base_happiness
+            hatch_counter
+            capture_rate
         }
         base_experience
         order

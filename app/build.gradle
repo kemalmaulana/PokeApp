@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.apollographql.apollo3'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -64,8 +66,6 @@ dependencies {
 
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:2.38.1"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
     kapt "com.google.dagger:hilt-compiler:2.38.1"
 
     //Apollo GraphQL
@@ -92,6 +92,7 @@ dependencies {
 
     // Room Database
     implementation "androidx.room:room-runtime:2.4.0"
+    implementation "androidx.room:room-ktx:2.4.0"
     kapt "androidx.room:room-compiler:2.4.0"
     testImplementation "androidx.room:room-testing:2.4.0"
     implementation "androidx.room:room-paging:2.4.0"
@@ -106,11 +107,17 @@ dependencies {
     // Paging
     implementation 'androidx.paging:paging-runtime-ktx:3.1.0'
 
+    // Firebase
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.6'
+    implementation 'com.google.firebase:firebase-analytics-ktx:20.0.2'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

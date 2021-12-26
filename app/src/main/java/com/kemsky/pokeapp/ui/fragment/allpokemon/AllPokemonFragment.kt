@@ -1,24 +1,23 @@
-package com.kemsky.pokeapp.ui.allpokemon
+package com.kemsky.pokeapp.ui.fragment.allpokemon
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kemsky.pokeapp.ViewModelFactory
 import com.kemsky.pokeapp.databinding.FragmentAllPokemonBinding
-import com.kemsky.pokeapp.ui.allpokemon.adapter.AllPokemonAdapter
+import com.kemsky.pokeapp.ui.fragment.allpokemon.adapter.AllPokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.WithFragmentBindings
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-@WithFragmentBindings
 class AllPokemonFragment : Fragment() {
 
     @Inject
@@ -38,7 +37,16 @@ class AllPokemonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        configureToolbar()
+        configureRecyclerView()
+    }
 
+    private fun configureToolbar() {
+        (activity as AppCompatActivity).setSupportActionBar(binding?.toolbar)
+        binding?.toolbar?.title = "All Pokemon"
+    }
+
+    private fun configureRecyclerView() {
         val pokemonAdapter = AllPokemonAdapter()
         binding?.rvAllPokemon?.layoutManager = LinearLayoutManager(requireContext())
         binding?.rvAllPokemon?.setHasFixedSize(true)
@@ -50,7 +58,6 @@ class AllPokemonFragment : Fragment() {
                 pokemonAdapter.submitData(pagedData)
             }
         }
-
     }
 
 

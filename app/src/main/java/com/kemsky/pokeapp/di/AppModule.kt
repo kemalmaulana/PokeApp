@@ -1,10 +1,7 @@
 package com.kemsky.pokeapp.di
 
 import android.content.Context
-import androidx.room.Room
-import com.apollographql.apollo3.ApolloClient
 import com.kemsky.pokeapp.ViewModelFactory
-import com.kemsky.pokeapp.constant.AppConstant.BASE_URL
 import com.kemsky.pokeapp.data.repository.PokeRepository
 import com.kemsky.pokeapp.data.repository.PokeRepositoryImpl
 import com.kemsky.pokeapp.data.room.PokemonDatabase
@@ -21,23 +18,15 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(): PokeRepository = PokeRepositoryImpl {
-        ApolloClient.Builder()
-            .serverUrl(BASE_URL)
-            .build()
-    }
+    fun provideRepository(): PokeRepository = PokeRepositoryImpl(PokeRepositoryImpl.invoke())
 
     @Provides
     fun provideViewModelProvider(
         repository: PokeRepository,
         @ApplicationContext context: Context
     ): ViewModelFactory = ViewModelFactory(
-        repository
-    ) {
-        Room.databaseBuilder(
-            context, PokemonDatabase::class.java, "fav-pokemon"
-        ).build()
-    }
+        repository, PokemonDatabase.getDatabase(context)
+    )
 
 
 }

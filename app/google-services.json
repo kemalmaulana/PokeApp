@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "168366243220",
+    "project_id": "pokeapp-553a5",
+    "storage_bucket": "pokeapp-553a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168366243220:android:60c039cd579e73b751a381",
+        "android_client_info": {
+          "package_name": "com.kemsky.pokeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168366243220-qvicgumtnpqiai910p6g622hv54grino.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kemsky.pokeapp",
+            "certificate_hash": "11cd8d651b366e5fb921b5bfabee9ebb4ee3dc82"
+          }
+        },
+        {
+          "client_id": "168366243220-8qgcql8i5pjofsmt11o5nf0hmcpibl46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpLhBecEK4Cw79wnnTgpfd2XiQctIDtmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168366243220-8qgcql8i5pjofsmt11o5nf0hmcpibl46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

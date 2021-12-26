@@ -10,4 +10,9 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_botnav">BotnavActivity</string>
     <string name="pokemon_image">Pokemon Image</string>
+    <string name="form_switchable">Form Switchable :</string>
+    <string name="base_happiness">Base Happiness</string>
+    <string name="hatch_counter">Hatch Counter</string>
+    <string name="base_experience">Base Experience</string>
+    <string name="capture_rate">Capture Rate</string>
 </resources>

@@ -5,14 +5,15 @@ import com.apollographql.apollo3.api.Optional
 import com.kemsky.GetAllPokemonQuery
 import com.kemsky.GetDetailPokemonQuery
 import com.kemsky.GetPagedPokemonQuery
+import com.kemsky.pokeapp.constant.AppConstant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class PokeRepositoryImpl(private val graphQLService: () -> ApolloClient) : PokeRepository {
+class PokeRepositoryImpl(private val graphQLService: ApolloClient) : PokeRepository {
 
     override suspend fun getAllPokemon(): Flow<GetAllPokemonQuery.Data> {
         return flow {
-            val response = graphQLService().query(GetAllPokemonQuery()).execute()
+            val response = graphQLService.query(GetAllPokemonQuery()).execute()
             response.data?.let { emit(it) }
         }
     }
@@ -22,7 +23,7 @@ class PokeRepositoryImpl(private val graphQLService: () -> ApolloClient) : PokeR
         limit: Int
     ): Flow<GetPagedPokemonQuery.Data> {
         return flow {
-            val response = graphQLService().query(
+            val response = graphQLService.query(
                 GetPagedPokemonQuery(
                     limit = Optional.presentIfNotNull(limit),
                     offset = Optional.presentIfNotNull(offset)
@@ -34,7 +35,7 @@ class PokeRepositoryImpl(private val graphQLService: () -> ApolloClient) : PokeR
 
     override suspend fun getDetailPokemon(pokeId: Int): Flow<GetDetailPokemonQuery.Data> {
         return flow {
-            val response = graphQLService().query(
+            val response = graphQLService.query(
                 GetDetailPokemonQuery(
                     pokeId = Optional.presentIfNotNull(pokeId)
                 )
@@ -43,5 +44,12 @@ class PokeRepositoryImpl(private val graphQLService: () -> ApolloClient) : PokeR
         }
     }
 
+    companion object {
+        operator fun invoke(): ApolloClient {
+            return ApolloClient.Builder()
+                .serverUrl(AppConstant.BASE_URL)
+                .build()
+        }
+    }
 
 }

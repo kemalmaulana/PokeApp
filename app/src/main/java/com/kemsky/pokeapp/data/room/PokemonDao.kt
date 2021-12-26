@@ -1,23 +1,24 @@
 package com.kemsky.pokeapp.data.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.kemsky.pokeapp.data.room.model.FavPokemonModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
     @Query("SELECT * FROM favpokemonmodel")
-    fun getAllFav(): List<FavPokemonModel>
+    fun getAllFav(): Flow<List<FavPokemonModel>>
 
     @Query("SELECT * FROM favpokemonmodel WHERE id == :pokeId")
-    fun getSingleFav(pokeId: Int): FavPokemonModel
+    fun getSingleFav(pokeId: Int): Flow<FavPokemonModel?>
 
-    @Insert
-    fun insertAll(vararg users: FavPokemonModel)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(vararg users: FavPokemonModel)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSingle(users: FavPokemonModel)
 
     @Delete
-    fun delete(user: FavPokemonModel)
+    suspend fun delete(user: FavPokemonModel)
 
 }

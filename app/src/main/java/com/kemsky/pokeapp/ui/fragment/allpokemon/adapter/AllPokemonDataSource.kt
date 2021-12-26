@@ -1,4 +1,4 @@
-package com.kemsky.pokeapp.ui.allpokemon.adapter
+package com.kemsky.pokeapp.ui.fragment.allpokemon.adapter
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
