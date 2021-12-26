@@ -20,12 +20,17 @@ object AppModule {
     @Provides
     fun provideRepository(): PokeRepository = PokeRepositoryImpl(PokeRepositoryImpl.invoke())
 
+    @Singleton
+    @Provides
+    fun provideDatabase(@ApplicationContext context: Context): PokemonDatabase =
+        PokemonDatabase.getDatabase(context)
+
     @Provides
     fun provideViewModelProvider(
         repository: PokeRepository,
-        @ApplicationContext context: Context
+        database: PokemonDatabase
     ): ViewModelFactory = ViewModelFactory(
-        repository, PokemonDatabase.getDatabase(context)
+        repository, database
     )
 
 
